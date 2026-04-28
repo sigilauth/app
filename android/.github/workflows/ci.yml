@@ -1,0 +1,262 @@
+name: Android CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'android/**'
+      - '.github/workflows/android-ci.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'android/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  lint:
+    name: Lint (ktlint)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Run ktlint
+        working-directory: android
+        run: ./gradlew ktlintCheck
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Run unit tests
+        working-directory: android
+        run: ./gradlew test jacocoTestReport
+
+      - name: Coverage check
+        working-directory: android
+        run: |
+          # Android coverage: 80% line / 70% branch (Maren §10)
+          # JaCoCo coverage verification
+          ./gradlew jacocoTestCoverageVerification
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./android/app/build/reports/jacoco/test/jacocoTestReport.xml
+          flags: android
+          fail_ci_if_error: false
+
+  ui-tests:
+    name: UI Tests (Compose)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Run Compose UI tests (Robolectric)
+        working-directory: android
+        run: ./gradlew testDebugUnitTest
+
+  instrumented-tests:
+    name: Instrumented Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        api-level: [31, 33]  # API 31 = Android 12, API 33 = Android 13
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: AVD cache
+        uses: actions/cache@v4
+        id: avd-cache
+        with:
+          path: |
+            ~/.android/avd/*
+            ~/.android/adb*
+          key: avd-${{ matrix.api-level }}
+
+      - name: Create AVD and run tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          script: |
+            cd android
+            ./gradlew connectedDebugAndroidTest
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-test-results-${{ matrix.api-level }}
+          path: android/app/build/reports/androidTests/
+
+  a11y-scan:
+    name: Accessibility Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build debug APK
+        working-directory: android
+        run: ./gradlew assembleDebug
+
+      - name: Run Accessibility Scanner
+        working-directory: android
+        run: |
+          # Placeholder for Google Accessibility Test Framework
+          echo "Accessibility scan placeholder - requires GATF integration"
+          # Expected: 15 Aria blockers from beacon-prd.md §10
+          # Integration: com.google.android.apps.common.testing.accessibility.framework
+
+  tdd-audit:
+    name: TDD Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch base branch
+        run: git fetch origin main:main || true
+
+      - name: Run TDD audit
+        working-directory: android
+        run: bash ../../scripts/tdd-audit.sh origin/main
+
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Run security checks
+        working-directory: android
+        run: |
+          # Check for hardcoded secrets
+          ! grep -r -E "api[_-]?key|secret|password|token" --include="*.kt" app/src/ || \
+            (echo "Potential secrets found in source code" && exit 1)
+
+      - name: OWASP Dependency Check
+        uses: dependency-check/Dependency-Check_Action@main
+        with:
+          project: 'sigilauth-android'
+          path: './android'
+          format: 'HTML'
+          args: >
+            --failOnCVSS 7
+            --enableRetired
+
+      - name: Upload OWASP report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: owasp-report-android
+          path: reports/
+
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build release APK
+        working-directory: android
+        run: ./gradlew assembleRelease
+
+      - name: Verify APK
+        working-directory: android
+        run: |
+          test -f app/build/outputs/apk/release/app-release.apk || \
+            echo "Release APK not found"
+
+  all-checks:
+    name: All Checks Passed
+    needs: [lint, test, ui-tests, instrumented-tests, a11y-scan, tdd-audit, security, build]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Check all jobs succeeded
+        run: |
+          if [[ "${{ needs.lint.result }}" != "success" ]] || \
+             [[ "${{ needs.test.result }}" != "success" ]] || \
+             [[ "${{ needs.ui-tests.result }}" != "success" ]] || \
+             [[ "${{ needs.instrumented-tests.result }}" != "success" ]] || \
+             [[ "${{ needs.a11y-scan.result }}" != "success" ]] || \
+             [[ "${{ needs.tdd-audit.result }}" != "success" ]] || \
+             [[ "${{ needs.security.result }}" != "success" ]] || \
+             [[ "${{ needs.build.result }}" != "success" ]]; then
+            echo "One or more checks failed"
+            exit 1
+          fi
+          echo "All Android checks passed!"

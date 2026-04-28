@@ -1,0 +1,19 @@
+// Top-level build file
+buildscript {
+    extra.apply {
+        set("kotlin_version", "1.9.22")
+        set("compose_version", "1.6.0")
+        set("compose_compiler_version", "1.5.8")
+    }
+}
+
+plugins {
+    id("com.android.application") version "8.2.2" apply false
+    id("org.jetbrains.kotlin.android") version "1.9.22" apply false
+    id("com.google.gms.google-services") version "4.4.0" apply false
+    id("com.google.firebase.crashlytics") version "2.9.9" apply false
+}
+
+tasks.register<Delete>("clean") {
+    delete(rootProject.layout.buildDirectory)
+}

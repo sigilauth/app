@@ -1,0 +1,10 @@
+# Sigil Auth iOS App Configuration
+# App Store Connect credentials and identifiers
+
+app_identifier("com.wagmilabs.sigil")
+apple_id("kaity@wagmilabs.vc")
+team_id("CVBUNQ5UY3")
+
+# For App Store Connect API key authentication
+# Reads from ~/.appstoreconnect/api/AuthKey_*.p8 or ~/.private_keys/AuthKey_*.p8
+# See APP-STORE-API-KEY.md for setup instructions

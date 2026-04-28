@@ -1,0 +1,109 @@
+name: iOS CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Test iOS App
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_15.2.app
+
+      - name: Cache Swift packages
+        uses: actions/cache@v4
+        with:
+          path: .build
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-spm-
+
+      - name: Build
+        run: |
+          cd app/ios
+          swift build -c release
+
+      - name: Run unit tests
+        run: |
+          cd app/ios
+          swift test \
+            --parallel \
+            --xunit-output tests.xml
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: app/ios/tests.xml
+
+      - name: Check test coverage
+        run: |
+          cd app/ios
+          swift test --enable-code-coverage
+          xcrun llvm-cov export \
+            .build/debug/SigilAuthPackageTests.xctest/Contents/MacOS/SigilAuthPackageTests \
+            --instr-profile=.build/debug/codecov/default.profdata \
+            --format=lcov > coverage.lcov
+
+      - name: Enforce coverage threshold (80%)
+        run: |
+          # TODO: Parse coverage.lcov and fail if <80%
+          echo "Coverage check placeholder - implement when tests pass"
+
+  ui-test:
+    name: UI Tests
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_15.2.app
+
+      - name: Boot simulator
+        run: |
+          xcrun simctl boot "iPhone 15 Pro" || true
+          xcrun simctl list devices | grep Booted
+
+      - name: Run UI tests
+        run: |
+          cd app/ios
+          # TODO: xcodebuild test with UI test target when created
+          echo "UI tests placeholder - awaiting XCUITest implementation"
+
+  accessibility-scan:
+    name: Accessibility Scan
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Xcode Accessibility Inspector
+        run: |
+          # TODO: Automated a11y scan per Aria §11.1
+          echo "A11y scan placeholder - manual VoiceOver testing required"
+
+  tdd-audit:
+    name: TDD Audit (test-first enforcement)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check test-first commit order
+        run: |
+          # Per work-blocks §B12: test-file commit < impl-file commit for new files
+          # TODO: Implement git log parser when files exist
+          echo "TDD audit placeholder"

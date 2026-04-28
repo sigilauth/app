@@ -1,0 +1,104 @@
+name: SigilAuth
+
+options:
+  bundleIdPrefix: com.wagmilabs
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+  developmentLanguage: en
+
+settings:
+  MARKETING_VERSION: "0.1.0"
+  CURRENT_PROJECT_VERSION: 1
+  DEVELOPMENT_TEAM: CVBUNQ5UY3
+  SWIFT_VERSION: "5.9"
+
+packages:
+  SigilAuthPackage:
+    path: .
+  Firebase:
+    url: https://github.com/firebase/firebase-ios-sdk
+    from: 10.20.0
+
+targets:
+  SigilAuth:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+
+    sources:
+      - path: App
+        createIntermediateGroups: true
+      - path: Resources/GoogleService-Info.plist
+        buildPhase: resources
+      - path: App/LaunchScreen.storyboard
+        buildPhase: resources
+
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Sigil Auth
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UILaunchStoryboardName: LaunchScreen
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UIRequiredDeviceCapabilities:
+          - arm64
+        NSCameraUsageDescription: "Scan QR codes to pair with Sigil Auth servers"
+        NSFaceIDUsageDescription: "Authenticate to approve Sigil Auth requests"
+        ITSAppUsesNonExemptEncryption: false
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        CFBundleURLTypes:
+          - CFBundleURLSchemes:
+              - sigil
+            CFBundleURLName: com.wagmilabs.sigil
+
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.wagmilabs.sigil
+        INFOPLIST_FILE: App/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_IDENTITY: "Apple Development"
+        ENABLE_BITCODE: false
+      configs:
+        Debug:
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
+        Release:
+          SWIFT_OPTIMIZATION_LEVEL: -O
+
+    dependencies:
+      - package: SigilAuthPackage
+        product: SigilAuthCore
+      - package: SigilAuthPackage
+        product: SigilAuthUI
+      - package: Firebase
+        product: FirebaseCore
+      - package: Firebase
+        product: FirebaseCrashlytics
+
+    entitlements:
+      path: App/SigilAuth.entitlements
+      properties:
+        com.apple.developer.devicecheck.appattest-environment: production
+        aps-environment: production
+        keychain-access-groups:
+          - $(AppIdentifierPrefix)com.wagmilabs.sigil
+
+schemes:
+  SigilAuth:
+    build:
+      targets:
+        SigilAuth: all
+    run:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release

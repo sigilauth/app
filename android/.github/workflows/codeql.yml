@@ -1,0 +1,83 @@
+# CodeQL Security Analysis for Kotlin/Java
+# Copy to: .github/workflows/codeql.yml in sigilauth/app (Android)
+
+name: CodeQL
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'android/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'android/**'
+  schedule:
+    - cron: '0 6 * * 1'
+
+permissions:
+  security-events: write
+  contents: read
+
+jobs:
+  analyze:
+    name: Analyze Kotlin
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: java-kotlin
+          queries: +security-extended
+
+      - name: Build Android
+        run: |
+          cd android
+          ./gradlew assembleDebug --no-daemon
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:java-kotlin"
+
+      # Sigil-specific: Check Android security patterns
+      - name: Check Android security patterns
+        run: |
+          echo "Checking Android security patterns..."
+          
+          # Ensure StrongBox is used
+          if ! grep -r "setIsStrongBoxBacked" android/; then
+            echo "::error::StrongBox backing not found. Keys must use StrongBox."
+            exit 1
+          fi
+          
+          # Check biometric auth required
+          if ! grep -r "setUserAuthenticationRequired" android/; then
+            echo "::error::User authentication requirement not found."
+            exit 1
+          fi
+          
+          # FLAG_SECURE on sensitive activities
+          if ! grep -r "FLAG_SECURE" android/; then
+            echo "::warning::FLAG_SECURE not found. Mnemonic screens should use it."
+          fi
+          
+          # No Log.d/v with sensitive data
+          if grep -rE "Log\.(d|v).*\".*key|secret|mnemonic" android/; then
+            echo "::warning::Potential sensitive data in debug logs."
+          fi
+          
+          echo "Android security pattern check passed."

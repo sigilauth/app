@@ -1,0 +1,11 @@
+Sigil Auth v0.1.0 — Initial Internal Testing Release
+
+First build for internal testing. Hardware-backed authentication with cryptographic keys that never leave your device.
+
+NEW: Device registration (QR/8-digit code), push approval flow, Android Keystore + StrongBox support, Firebase Crashlytics.
+
+MISSING: Mnemonic backup, server list, settings screen, unpair flow. MPA/decrypt pending backend work.
+
+TESTING: Report issues to beta@sigilauth.com or github.com/sigilauth/app/issues
+
+Open source AGPL-3.0

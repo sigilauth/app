@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Simple key icon for notifications -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M12,1C8.676,1 6,3.676 6,7c0,2.205 1.206,4.119 2.989,5.173L8,22h2l0.655,-8.013C11.754,13.986 12.853,14 13,14c0.147,0 1.246,-0.014 2.345,-0.013L16,22h2l-0.989,-9.827C18.794,11.119 20,9.205 20,7c0,-3.324 -2.676,-6 -6,-6zM12,3c2.205,0 4,1.795 4,4s-1.795,4 -4,4 -4,-1.795 -4,-4 1.795,-4 4,-4z" />
+</vector>

@@ -1,0 +1,25 @@
+/*
+ * Localization strings for Sigil Auth iOS
+ * Generated from shared-i18n Fluent keys
+ * English (en) - Base localization
+ */
+
+/* OOB Admin Approval (pair-flow.ftl) */
+"pair-oob-title" = "Awaiting Administrator Approval";
+"pair-oob-subtitle" = "Your pairing request has been sent to the server administrator.";
+"pair-oob-server-label" = "Server";
+"pair-oob-time-elapsed" = "Time elapsed: { $timeElapsed }";
+"pair-oob-poll-status" = "Checking every 2 seconds...";
+"pair-oob-wait-message" = "The administrator must approve your pairing request before you can continue. This may take a few minutes.";
+
+/* Challenge Approval (challenge.ftl) */
+"challenge-title" = "Authentication Request";
+"challenge-approve-login-title" = "Approve Login?";
+"challenge-service-label" = "Service";
+"challenge-action-label" = "Action";
+"challenge-view-details-button" = "View Details";
+"challenge-expires-label" = "Expires: { $timeRemaining }";
+
+/* Common Buttons (common.ftl) */
+"btn-approve" = "Approve";
+"btn-reject" = "Reject";

@@ -1,0 +1,42 @@
+Sigil Auth v0.1.0 — Initial TestFlight Release
+
+Hardware-backed strong authentication for your apps and services. No passwords, no TOTP codes — just cryptographic proof stored in your iPhone's Secure Enclave.
+
+WHAT'S NEW
+
+• Pair Device — Scan QR code or enter 8-digit code to connect with Sigil Auth servers
+• Push Approval — Approve logins instantly with Face ID or Touch ID
+• Secure Keys — ECDSA P-256 keypairs that never leave your device's secure hardware
+• Mnemonic Backup — 12-word recovery phrase (write it down!)
+• Pictogram Verification — Visual server identity with 5-emoji pictogram
+• Accessibility — Full VoiceOver support, Dynamic Type scaling, high contrast colors
+
+HOW IT WORKS
+
+1. Pair — Your server shows a QR code. Scan it with Sigil Auth.
+2. Approve — When you log in, you get a push notification. Tap to review.
+3. Authenticate — Confirm with Face ID/Touch ID. Your device signs the challenge cryptographically.
+4. Done — Server verifies signature. You're logged in.
+
+WHAT'S NOT HERE YET
+
+This is an early build for testing. Missing features:
+• Can't view all paired servers (no device list yet)
+• Can't unpair without deleting the app
+• No settings screen
+• Multi-party authorization UI built but server support pending
+
+SECURITY
+
+• Keys stored in Secure Enclave — Apple's hardware security chip
+• Mnemonic encrypted in Keychain, excluded from iCloud
+• Screenshot protection on sensitive screens
+• Open source (AGPL-3.0) — audit the code at github.com/sigilauth/app
+
+TESTING FEEDBACK
+
+Report bugs or suggestions:
+• GitHub: github.com/sigilauth/app/issues
+• Email: beta@sigilauth.com
+
+Thank you for testing!

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Sigil Auth brand colors (from sigilauth.com) -->
+    <color name="sigil_background">#121217</color>
+    <color name="sigil_primary">#4169E1</color>
+    <color name="sigil_text">#E2E2E8</color>
+</resources>

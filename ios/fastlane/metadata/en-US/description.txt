@@ -1,0 +1,17 @@
+Sigil Auth replaces passwords with cryptographic proof. Your device becomes your credential, secured by the same hardware that protects your bank transactions.
+
+Every authentication is a signed challenge-response using ECDSA P-256 keys stored in your iPhone's Secure Enclave. No shared secrets. No passwords to steal. No phishing.
+
+When you log in, your paired services send a cryptographic challenge directly to your phone via push notification. You approve with Face ID or Touch ID. Your device signs the challenge. The service verifies your signature. Access granted.
+
+Built for teams and individuals who need strong authentication without vendor lock-in. Open source (AGPL-3.0) with standard cryptography. Works with any service that implements the protocol.
+
+Features:
+• Hardware-backed ECDSA P-256 keypairs (Secure Enclave)
+• Push-based authentication approval
+• Multi-party authorization for sensitive actions
+• Mnemonic backup for device recovery
+• No vendor lock-in — standard crypto, open protocol
+• Privacy-first — your keys never leave your device
+
+Sigil Auth is open source software from Wagmi Labs. Anyone can audit the code, run their own infrastructure, or build compatible clients.

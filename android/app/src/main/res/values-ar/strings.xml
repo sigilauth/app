@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RTL test file - Arabic -->
+    <!-- Per suki-i18n-requirements.md: RTL support for ar, he, fa, ur -->
+    <!-- Actual translations will come from Fluent i18n system -->
+
+    <string name="app_name">Sigil Auth</string>
+    <string name="notification_channel_challenges_name">طلبات المصادقة</string>
+    <string name="notification_channel_challenges_description">طلبات الموافقة من الخوادم المسجلة</string>
+</resources>

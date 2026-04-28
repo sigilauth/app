@@ -1,0 +1,33 @@
+Sigil Auth replaces passwords with cryptographic proof. Your device becomes your credential, secured by hardware that can't be extracted or copied.
+
+<b>How it works:</b>
+Every authentication is a signed challenge-response using ECDSA P-256 keys stored in your phone's StrongBox or hardware-backed keystore. When you log in, paired services send a cryptographic challenge via push notification. You approve with your fingerprint or face unlock. Your device signs the challenge. The service verifies your signature. Access granted.
+
+<b>Why Sigil Auth:</b>
+• <b>Hardware-backed keys</b> — ECDSA P-256 in StrongBox, keys never leave your device
+• <b>No shared secrets</b> — No passwords to steal, no phishing attacks
+• <b>Push authentication</b> — Approve logins from your phone instantly
+• <b>Multi-party authorization</b> — Require M-of-N device approvals for sensitive actions
+• <b>Mnemonic backup</b> — 12-word recovery phrase for device migration
+• <b>Open source</b> — AGPL-3.0 licensed, anyone can audit or self-host
+• <b>No vendor lock-in</b> — Standard crypto (P-256, AES-GCM, HKDF), open protocol
+
+<b>Built for teams and privacy-conscious individuals</b> who need strong authentication without trusting a third party with their identity.
+
+Sigil Auth is open source software from Wagmi Labs. The protocol specification is Apache-2.0 licensed — anyone can build compatible clients or servers.
+
+<b>Features:</b>
+✓ Hardware-backed ECDSA key generation
+✓ Push-based challenge approval
+✓ Biometric authentication gate (fingerprint, face unlock)
+✓ Multi-device pairing (QR code, 8-digit code, manual entry)
+✓ Server pictogram verification (TOFU trust)
+✓ Mnemonic backup and recovery
+✓ Privacy-first design — no telemetry, no tracking
+
+<b>Requirements:</b>
+• Android 8.0 (API 26) or higher
+• Biometric hardware (fingerprint sensor or face unlock)
+• Internet connection for pairing and challenge delivery
+
+Learn more at sigilauth.com

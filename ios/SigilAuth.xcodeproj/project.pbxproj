@@ -1,0 +1,413 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C7849393FE30675F5B0E65B /* SigilAuthCore in Frameworks */ = {isa = PBXBuildFile; productRef = A16478E1C167C360A1342E1B /* SigilAuthCore */; };
+		1213DF6BBB60F732B6C66C56 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = AFDAC8B9B8EFAF0C051B12E4 /* FirebaseCrashlytics */; };
+		1517A0F5B5F0793FC065254A /* SigilAuthApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5760DC4659315D4E41E5888 /* SigilAuthApp.swift */; };
+		4ADB82446C1ADED70D6F7EF6 /* SigilAuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = BB7437E06D1E72CC3455DB20 /* SigilAuthUI */; };
+		5A281E3E251C964BF898C64D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFAD590F929864FC5FFA0E24 /* GoogleService-Info.plist */; };
+		6324D8595B6CE684597FBF7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F70C3B1C3F76AAEC49B41B /* Assets.xcassets */; };
+		9B4EA93D6FCAAE359488A937 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F5A237663464FC4FFB011FA /* LaunchScreen.storyboard */; };
+		C435CE57BAB1DED7E9556309 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 7A65496D662E7E381BCE65EB /* FirebaseCore */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		22F70C3B1C3F76AAEC49B41B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8F5A237663464FC4FFB011FA /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9047B6F682FA686B9775ED80 /* SigilAuth.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SigilAuth.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B29D1DC56781A2B27DBE4932 /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ios; path = .; sourceTree = SOURCE_ROOT; };
+		DBF54E4E85103622918A11C3 /* SigilAuth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SigilAuth.entitlements; sourceTree = "<group>"; };
+		EA2BEC2B99EEAD974FAFEADE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F5760DC4659315D4E41E5888 /* SigilAuthApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigilAuthApp.swift; sourceTree = "<group>"; };
+		FFAD590F929864FC5FFA0E24 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		17E169DAE46C0B2783158E84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C7849393FE30675F5B0E65B /* SigilAuthCore in Frameworks */,
+				4ADB82446C1ADED70D6F7EF6 /* SigilAuthUI in Frameworks */,
+				C435CE57BAB1DED7E9556309 /* FirebaseCore in Frameworks */,
+				1213DF6BBB60F732B6C66C56 /* FirebaseCrashlytics in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3BE89148F3605E068BFE8CAF = {
+			isa = PBXGroup;
+			children = (
+				BA8E5917EA82D3EB02CE28F0 /* App */,
+				5CFB4F7C8DD07936CB74AB96 /* Packages */,
+				BD32027DDFF173112B84D5B2 /* Resources */,
+				9846F5E156B58D8FD966DD53 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5CFB4F7C8DD07936CB74AB96 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				B29D1DC56781A2B27DBE4932 /* ios */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		9846F5E156B58D8FD966DD53 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9047B6F682FA686B9775ED80 /* SigilAuth.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BA8E5917EA82D3EB02CE28F0 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				22F70C3B1C3F76AAEC49B41B /* Assets.xcassets */,
+				EA2BEC2B99EEAD974FAFEADE /* Info.plist */,
+				8F5A237663464FC4FFB011FA /* LaunchScreen.storyboard */,
+				DBF54E4E85103622918A11C3 /* SigilAuth.entitlements */,
+				F5760DC4659315D4E41E5888 /* SigilAuthApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		BD32027DDFF173112B84D5B2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FFAD590F929864FC5FFA0E24 /* GoogleService-Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7D733A817DE442CFB2E10BDA /* SigilAuth */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 02665FC930F1FEB0638AA89B /* Build configuration list for PBXNativeTarget "SigilAuth" */;
+			buildPhases = (
+				E622E376979C26D7086AE14E /* Sources */,
+				D28B2AC28673D3981436CE6F /* Resources */,
+				17E169DAE46C0B2783158E84 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SigilAuth;
+			packageProductDependencies = (
+				A16478E1C167C360A1342E1B /* SigilAuthCore */,
+				BB7437E06D1E72CC3455DB20 /* SigilAuthUI */,
+				7A65496D662E7E381BCE65EB /* FirebaseCore */,
+				AFDAC8B9B8EFAF0C051B12E4 /* FirebaseCrashlytics */,
+			);
+			productName = SigilAuth;
+			productReference = 9047B6F682FA686B9775ED80 /* SigilAuth.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D1529A43A8DE2BB6B8236F59 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					7D733A817DE442CFB2E10BDA = {
+						DevelopmentTeam = CVBUNQ5UY3;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 2ADF64497403E6AA653A4264 /* Build configuration list for PBXProject "SigilAuth" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 3BE89148F3605E068BFE8CAF;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				EF139A17DB81A063FDA23358 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				BD01EB8411E9E90AD669024D /* XCLocalSwiftPackageReference "." */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 9846F5E156B58D8FD966DD53 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7D733A817DE442CFB2E10BDA /* SigilAuth */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D28B2AC28673D3981436CE6F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6324D8595B6CE684597FBF7E /* Assets.xcassets in Resources */,
+				5A281E3E251C964BF898C64D /* GoogleService-Info.plist in Resources */,
+				9B4EA93D6FCAAE359488A937 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E622E376979C26D7086AE14E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1517A0F5B5F0793FC065254A /* SigilAuthApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		11CC11B9F9B3934CAAB692F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = CVBUNQ5UY3;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		2657092DBFC710B54A20D941 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/SigilAuth.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CVBUNQ5UY3;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wagmilabs.sigil;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		36166DF20E51A05355F6CE3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/SigilAuth.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CVBUNQ5UY3;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wagmilabs.sigil;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3D835B46A57A866AF2D50A63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = CVBUNQ5UY3;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		02665FC930F1FEB0638AA89B /* Build configuration list for PBXNativeTarget "SigilAuth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36166DF20E51A05355F6CE3F /* Debug */,
+				2657092DBFC710B54A20D941 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		2ADF64497403E6AA653A4264 /* Build configuration list for PBXProject "SigilAuth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D835B46A57A866AF2D50A63 /* Debug */,
+				11CC11B9F9B3934CAAB692F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		BD01EB8411E9E90AD669024D /* XCLocalSwiftPackageReference "." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = .;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EF139A17DB81A063FDA23358 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.20.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7A65496D662E7E381BCE65EB /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF139A17DB81A063FDA23358 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		A16478E1C167C360A1342E1B /* SigilAuthCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SigilAuthCore;
+		};
+		AFDAC8B9B8EFAF0C051B12E4 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF139A17DB81A063FDA23358 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		BB7437E06D1E72CC3455DB20 /* SigilAuthUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SigilAuthUI;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = D1529A43A8DE2BB6B8236F59 /* Project object */;
+}

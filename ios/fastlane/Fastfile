@@ -1,0 +1,97 @@
+# Sigil Auth iOS Fastlane Configuration
+# Two lanes: install_dev (direct to device), beta (TestFlight)
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Install development build on connected iPhone"
+  desc "Usage: fastlane install_dev"
+  lane :install_dev do
+    # Use automatic signing for development
+    update_code_signing_settings(
+      use_automatic_signing: true,
+      path: "SigilAuth.xcodeproj",
+      team_id: "CVBUNQ5UY3",
+      bundle_identifier: "com.wagmilabs.sigil",
+      code_sign_identity: "Apple Development"
+    )
+
+    # Build for development
+    gym(
+      scheme: "SigilAuth",
+      configuration: "Debug",
+      export_method: "development",
+      output_directory: "./build",
+      output_name: "SigilAuth-Dev.ipa",
+      clean: true,
+      export_options: {
+        signingStyle: "automatic",
+        compileBitcode: false
+      }
+    )
+
+    # Install on connected device
+    # This uses ios-deploy or xcrun devicectl under the hood
+    install_on_device(
+      ipa: "./build/SigilAuth-Dev.ipa"
+    )
+
+    UI.success("✅ Dev build installed on connected iPhone")
+    UI.message("Open the app on your device to test")
+  end
+
+  desc "Upload beta build to TestFlight"
+  desc "Usage: fastlane beta"
+  lane :beta do
+    # Increment build number automatically
+    increment_build_number(
+      xcodeproj: "SigilAuth.xcodeproj"
+    )
+
+    current_version = get_version_number(
+      xcodeproj: "SigilAuth.xcodeproj",
+      target: "SigilAuth"
+    )
+
+    current_build = get_build_number(
+      xcodeproj: "SigilAuth.xcodeproj"
+    )
+
+    UI.message("Building version #{current_version} (#{current_build})")
+
+    # Build for App Store with automatic signing
+    gym(
+      scheme: "SigilAuth",
+      configuration: "Release",
+      export_method: "app-store",
+      output_directory: "./build",
+      output_name: "SigilAuth.ipa",
+      clean: true,
+      export_options: {
+        signingStyle: "automatic",
+        uploadSymbols: true
+      }
+    )
+
+    # Upload to TestFlight
+    # Uses App Store Connect API key from Appfile
+    # Key must be at ~/.appstoreconnect/api/AuthKey_*.p8 or ~/.private_keys/AuthKey_*.p8
+    pilot(
+      ipa: "./build/SigilAuth.ipa",
+      skip_waiting_for_build_processing: true,
+      skip_submission: true,
+      distribute_external: false,
+      notify_external_testers: false,
+      changelog: "Beta build #{current_build}"
+    )
+
+    UI.success("✅ Build #{current_build} uploaded to TestFlight")
+    UI.message("Processing will take 5-10 minutes")
+    UI.message("Check App Store Connect: https://appstoreconnect.apple.com/apps/6763482460")
+  end
+
+  # Error handling
+  error do |lane, exception|
+    UI.error("❌ Lane #{lane} failed: #{exception.message}")
+  end
+end

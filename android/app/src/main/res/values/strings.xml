@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App name -->
+    <string name="app_name">Sigil Auth</string>
+
+    <!-- Notification channels -->
+    <string name="default_notification_channel_id">sigil_challenges</string>
+    <string name="notification_channel_challenges_name">Authentication Requests</string>
+    <string name="notification_channel_challenges_description">Approval requests from your registered servers</string>
+
+    <!-- Placeholder strings - will be replaced with Fluent i18n -->
+    <string name="placeholder_waiting_for_b0">Waiting for B0 (OpenAPI spec)</string>
+
+    <!-- Content descriptions for accessibility -->
+    <string name="cd_server_pictogram">Server pictogram</string>
+    <string name="cd_device_pictogram">Device pictogram</string>
+
+    <!-- OOB Admin Approval (pair-flow.ftl) -->
+    <string name="pair_oob_title">Awaiting Administrator Approval</string>
+    <string name="pair_oob_subtitle">Your pairing request has been sent to the server administrator.</string>
+    <string name="pair_oob_server_label">Server</string>
+    <string name="pair_oob_time_elapsed">Time elapsed: %s</string>
+    <string name="pair_oob_poll_status">Checking every 2 seconds…</string>
+    <string name="pair_oob_wait_message">The administrator must approve your pairing request before you can continue. This may take a few minutes.</string>
+
+    <!-- Challenge Approval (challenge.ftl) -->
+    <string name="challenge_title">Authentication Request</string>
+    <string name="challenge_approve_login_title">Approve Login?</string>
+    <string name="challenge_service_label">Service</string>
+    <string name="challenge_action_label">Action</string>
+    <string name="challenge_view_details_button">View Details</string>
+    <string name="challenge_expires_label">Expires: %s</string>
+
+    <!-- Common buttons (common.ftl) -->
+    <string name="btn_approve">Approve</string>
+    <string name="btn_reject">Reject</string>
+</resources>

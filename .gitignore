@@ -1,0 +1,11 @@
+ios/build/
+ios/.build/
+ios/Build/
+ios/*.ipa
+ios/*.xcarchive
+ios/*.xcuserstate
+android/build/
+android/app/build/
+android/local.properties
+android/.gradle/
+.DS_Store

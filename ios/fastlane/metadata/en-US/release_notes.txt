@@ -1,0 +1,14 @@
+Initial TestFlight release.
+
+Features:
+• ECDSA P-256 hardware-backed authentication
+• Secure Enclave key storage
+• Push-based challenge approval
+• Multi-device pairing (QR code, 8-digit code, manual entry)
+• Mnemonic backup for device recovery
+• Pictogram server verification
+
+Known limitations:
+• Multi-party authorization flow pending
+• Decrypt prompt pending
+• Settings screen pending
